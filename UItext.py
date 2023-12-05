@@ -1,14 +1,20 @@
 import texts
 from os import system, name
 
-
 LINE = 70*"="
 language = "cz"
+help_options = ["+?", "-?", "*?", "/?"]
+
 
 def clrscr():
     if name == "nt":system("cls")
     else: system("clear")
 
+def end_premature(language):
+    print(LINE)
+    tw_print(texts.end_prem[language],len(LINE))
+    print(LINE)
+    exit(2)
 
 def tw_print(text: str, lenght: int, center=True ) -> None:
     """
@@ -26,7 +32,7 @@ def tw_print(text: str, lenght: int, center=True ) -> None:
         if center:print(str(split).center(lenght))
         else: print(str(split))
 
-def help_operator(option):
+def help_operator(option,language):
     print(LINE)
     if option == "+?":tw_print(texts.help_add[language],len(LINE))
     elif option == "-?":tw_print(texts.help_sub[language],len(LINE))
@@ -34,10 +40,18 @@ def help_operator(option):
     elif option == "/?":tw_print(texts.help_div[language],len(LINE))
     print(LINE)
     
-
-
-option = ""
-help_options = ["+?", "-?", "*?", "/?"]
+def language_change(language):
+    option = ""
+    print(LINE)
+    print(texts.lng_choice[language])
+    for choice in texts.language_list.values():
+        print(choice)
+    option = input()    
+    while option not in texts.language_list.keys():
+        tw_print(texts.bad_choice[language],len(LINE))
+        option = input()
+    if option == "1": return "cz"
+    elif option == "2": return "en"
 
 def start_menu(language):
     clrscr()
@@ -49,17 +63,46 @@ def start_menu(language):
     print()
 
 def choose_menu(language):
+    numcount = ""
+    go_next = False
+    operators = []
     clrscr()
     print(LINE)
-    print(texts.problem_number[language])
+    while not go_next:
+        print(texts.problem_number[language])
+        numcount = input()
+        if numcount == "E":
+            end_premature(language)
+        try: 
+            numcount = int(numcount)
+        except ValueError:
+            print(texts.wrong_enter[language],end="")
+            continue
+        if numcount <= 0:
+            print(texts.wrong_enter[language],end="")
+            continue
+        if numcount >= 1000:
+            tw_print(texts.are_sure[language],len(LINE))
+            print(numcount)
+            temp = input()
+            if temp == "":
+                break
+            else: 
+                continue
+        go_next = True
+
+    print(LINE)            
+    print(texts.operator_choice[language])
+    operators_in = input()
+    if "+" in operators_in: operators.append(" + ")
+    if "-" in operators_in: operators.append(" - ")
+    if "*" in operators_in: operators.append(" * ")
+    if "/" in operators_in: operators.append(" / ")
+    if operators == []: print("špatný vstup")
+    
 
 
 
 
-start_menu(language)
-option = input()
-if option in help_options: 
-    help_operator(option)
-else:
-    print(LINE)
-choose_menu(language)
+
+
