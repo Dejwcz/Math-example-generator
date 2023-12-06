@@ -48,8 +48,30 @@ help_div = {"cz":"Vygeneruje příklady na dělení pro určený počet čísel.
             "en":"Generates excercises for division for a \
 given number of numbers"}
 
-operator_choice = {"cz":"Zadej požadované operátory pro příklady: ",
-                   "en":"Enter the requred operators: "}
+operator_choice = {"cz":"Zadej požadované operátory pro příklady(+,-,*,/): ",
+                   "en":"Enter the requred operators(+,-,*,/) "}
 
 end_prem = {"cz":"Děkujeme za požití našeho programu a přejeme krásný den.",
             "en":"Thank you for using our program and have a nice day."}
+
+interval_choice = {"cz":"Zadej interval pro příklady: V základu je interval \
+od -1000 do 1000. Pokud nechceš interval měnit, nechej volby prázdné.",
+                  "en":"Enter an interval for examples. In default is the \
+interval from -1000 to 1000. If you don't want interval change leave the \
+options blank."}
+
+begin_interval = {"cz":"Začátek intervalu: ",
+                  "en":"Start of interval: "}
+
+end_interval = {"cz":"Konec intervalu: ",
+                "en":"End of interval: "}
+
+bad_interval = {"cz":"Konec intervalu musí být větší než jeho začátek. \
+Zkus to znovu!",
+                "en":"End of interval must be bigger than the start. \
+Try it again!"}
+
+decimal_coice = {"cz":"Zadej počet desetiných míst(Max: 15). Pro celá čísla \
+stiskni ENTER: ",
+                 "en":"Enter decimal numbers(Max: 15). For integers press \
+ENTER: "}
