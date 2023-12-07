@@ -1,3 +1,6 @@
+"""
+User interface for text version
+"""
 import texts
 from os import system, name
 
@@ -77,21 +80,49 @@ def start_menu(language: str) -> None:
     tw_print(texts.info[language],len(LINE))
     print()
 
-def choose_menu(language: str) -> None:
+def get_num_of_examples(language: str) -> int:
     """
-    Menu for select parametres to examples.
+    To obtain number of examples
     """
-
-    numcount = ""
+    numexamples = ""
     go_next = False
-    operators = []
-    interval = [-1000,1000]
-    decimal = 0
-
     clrscr()
     print(LINE)
     while not go_next:
-        print(texts.problem_number[language])
+        print(texts.examlpes_number[language])
+        numexamples = input()
+        if numexamples == "E":
+            end_premature(language)
+        try: 
+            numexamples = int(numexamples)
+        except ValueError:
+            print(texts.wrong_enter[language],end="")
+            continue
+        if numexamples <= 0:
+            print(texts.wrong_enter[language],end="")
+            continue
+        if numexamples >= 1000:
+            tw_print(texts.are_sure_ex[language],len(LINE))
+            print(numexamples)
+            temp = input()
+            if temp == "":
+                break
+            else: 
+                continue
+        go_next = True
+    return numexamples
+
+
+def get_numcount(language: str) -> int:
+    """
+    To obtain number of operands
+    """
+    numcount = ""
+    go_next = False
+    clrscr()
+    print(LINE)
+    while not go_next:
+        print(texts.operands_number[language])
         numcount = input()
         if numcount == "E":
             end_premature(language)
@@ -100,11 +131,11 @@ def choose_menu(language: str) -> None:
         except ValueError:
             print(texts.wrong_enter[language],end="")
             continue
-        if numcount <= 0:
+        if numcount <= 1:
             print(texts.wrong_enter[language],end="")
             continue
-        if numcount >= 1000:
-            tw_print(texts.are_sure[language],len(LINE))
+        if numcount >= 20:
+            tw_print(texts.are_sure_operands[language],len(LINE))
             print(numcount)
             temp = input()
             if temp == "":
@@ -112,10 +143,17 @@ def choose_menu(language: str) -> None:
             else: 
                 continue
         go_next = True
+    return numcount
 
+def get_operators(language: str) -> str:
+    """
+    To obtain operators for examples
+    """
+    operators = []
     go_next = False
+    clrscr()
     print(LINE)
-    while not go_next:            
+    while not go_next:          
         print(texts.operator_choice[language])
         operators_in = input()
         if operators_in == "E":
@@ -128,9 +166,16 @@ def choose_menu(language: str) -> None:
             print(texts.wrong_enter[language],end="")
             continue
         if operators: go_next = True
-    
+    return operators
+
+def get_interval(language: str) -> list:
+    """
+    To obtain interval of examples
+    """    
     go_next = False
+    interval = [0,1000]
     interval_temp = ""
+    clrscr()
     print(LINE)
     while not go_next:
         tw_print(texts.interval_choice[language],len(LINE))
@@ -172,8 +217,16 @@ def choose_menu(language: str) -> None:
             print(LINE)
             continue
         go_next = True
+    return interval
 
+def get_decimal(language: str) -> int:
+    """
+    To get the number of decimals
+    """  
     go_next = False
+    decimal = 0
+    clrscr()
+    print(LINE)
     while not go_next:
         tw_print(texts.decimal_coice[language],len(LINE))
         decimal = input()
@@ -191,16 +244,8 @@ def choose_menu(language: str) -> None:
             print(texts.wrong_enter[language])
             continue
         go_next = True
+    return decimal
 
-
-
-
-
-
-
-    print("finiš")
-    print(numcount,operators,interval,decimal)
-        
     
 
 

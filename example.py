@@ -81,7 +81,7 @@ class Example():
 
         
 #p = Example(5,[" / ", " * "," + "],interval=[-50,50],decimal=0)
-#d = Problem(2, [" + "])
+#d = Example(2, [" + "])
 #print(p)
 #print(p.solve_it())
 #print(p.whole_example())

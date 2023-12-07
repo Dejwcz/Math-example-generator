@@ -1,3 +1,9 @@
+"""
+Texts displayed in the program
+"""
+
+#dict is used for easy language change
+
 language_list = {"1":"1: pro češtinu",
                  "2":"2: for english"}
 
@@ -21,16 +27,26 @@ number of examples in defined interval. For more information enter \
 the requred operator(+,-,*,/) and question mark. To continue press \
 ENTER, type L for language change, and type E to exit."}
 
-problem_number = {"cz":"Zadej požadovaný počet příkladů: ",
+examlpes_number = {"cz":"Zadej požadovaný počet příkladů: ",
                   "en":"Enter the required number of examples: "}
+
+operands_number = {"cz":"Zadej požadovaný počet operandů: ",
+                  "en":"Enter the required number of operands: "}
 
 wrong_enter = {"cz":"Špatné zadání. ",
                "en":"Wrong enter. "}
 
-are_sure = {"cz": "Jste si jistí zvoleným počtem? Generování velkého počtu \
+are_sure_ex = {"cz":"Jste si jistí zvoleným počtem? Generování velkého počtu \
 příkladu může chvíli trvat. Zmáčkni ENTER pro pokračování. Zvolený počet: ",
-            "en":"Are you sure? Generating a lot of excercise can take \
+               "en":"Are you sure? Generating a lot of excercise can take \
 a lot of time. Press ENTER to continue. Your number of excercise : "}
+
+are_sure_operands = {"cz":"Jste si jisí zvoleným počtem? Při použití velkého \
+počtu operandů budou příklady příliš dlouhé a generování může chvíli trvat. \
+Zmáčkni ENTER pro pokračování. Zvolený počet: ",
+                     "en":"Aro you sure? If many operands are used, examples \
+they will be too long and generating can take a lot of time. Press ENTER to \
+continue. Your number of excercise :"}
 
 help_add = {"cz":"Vygeneruje příklady na sčítání pro určený počet čísel.",
              "en":"Generates excercises for addition for a \
@@ -55,9 +71,9 @@ end_prem = {"cz":"Děkujeme za požití našeho programu a přejeme krásný den
             "en":"Thank you for using our program and have a nice day."}
 
 interval_choice = {"cz":"Zadej interval pro příklady: V základu je interval \
-od -1000 do 1000. Pokud nechceš interval měnit, nechej volby prázdné.",
+od 0 do 1000. Pokud nechceš interval měnit, nechej volby prázdné.",
                   "en":"Enter an interval for examples. In default is the \
-interval from -1000 to 1000. If you don't want interval change leave the \
+interval from 0 to 1000. If you don't want interval change leave the \
 options blank."}
 
 begin_interval = {"cz":"Začátek intervalu: ",
@@ -75,3 +91,15 @@ decimal_coice = {"cz":"Zadej počet desetiných míst(Max: 15). Pro celá čísl
 stiskni ENTER: ",
                  "en":"Enter decimal numbers(Max: 15). For integers press \
 ENTER: "}
+
+file_examples = {"cz":"priklady.txt", 
+                 "en":"examples.txt"}
+file_results = {"cz":"vysledky.txt",
+                "en":"results.txt"}
+two_txt_saved = {"cz":"Vaše příklady a výsledky byly uloženy do dvou \
+souborů: ",
+                 "en":"Your examples and results have been saved to \
+two files: "}
+
+and_text = {"cz":" a ",
+            "en":" and "}
