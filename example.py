@@ -60,27 +60,50 @@ class Example():
     
     def solve_it(self):
         div = False
-        help_result = self._numbers_[0]
-        for i in range(len(self._numbers_)-1):
-            if self._operators_[i] == " + ":
-                help_result += self._numbers_[i+1]
-            elif self._operators_[i] == " - ":
-                help_result -= self._numbers_[i+1]
-            elif self._operators_[i] == " * ":
-                help_result *= self._numbers_[i+1]
-            elif self._operators_[i] == " / ":
-                help_result /= self._numbers_[i+1]
+        x = len(self._numbers_) - 1      
+        numbers_temp = self._numbers_.copy()
+        operators_temp = self._operators_.copy()
+        help_result = numbers_temp[0]
+        i = 0
+        # * and / operators first
+        while not i == x:            
+            if operators_temp[i] == " * ":
+                help_result = numbers_temp[i] * numbers_temp[i+1]
+                numbers_temp.pop(i)
+                numbers_temp.pop(i)
+                numbers_temp.insert(i,help_result)
+                operators_temp.pop(i)
+                x -= 1
+                i -= 1
+
+            elif operators_temp[i] == " / ":
+                help_result = numbers_temp[i] / numbers_temp[i+1]
+                numbers_temp.pop(i)
+                numbers_temp.pop(i)
+                numbers_temp.insert(i,help_result)
+                operators_temp.pop(i)
+                x -= 1
+                i -= 1
                 div = True
+            i += 1
+        
+        help_result = numbers_temp[0]
+        for i in range(len(numbers_temp)-1):
+            if operators_temp[i] == " + ":
+                help_result += numbers_temp[i+1]
+            elif operators_temp[i] == " - ":
+                help_result -= numbers_temp[i+1]
+     
         return help_result if div else round(help_result,self.decimal)
     
     def whole_example(self):
         return self.__str__() + str(self.solve_it())
 
-#p = Example(5,[" / ", " * "," + "],interval=[-50,50],decimal=0,divint=True)
+p = Example(5,[" / ", " * "," + "],interval=[-50,50],decimal=0)
 #d = Example(2, [" + "])
-#print(p)
-#print(p.solve_it())
-#print(p.whole_example())
+print(p)
+print(p.solve_it())
+print(p.whole_example())
 #print(d)
 #print(d.solve_it())
 #print(len(d))
