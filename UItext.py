@@ -245,11 +245,3 @@ def get_decimal(language: str) -> int:
             continue
         go_next = True
     return decimal
-
-    
-
-
-
-
-
-

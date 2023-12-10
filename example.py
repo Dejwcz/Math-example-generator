@@ -26,33 +26,33 @@ class Example():
         if decimal not in range(0,16):
             raise ValueError("Maximum is 15 decimal numbers")
         self.decimal = decimal
-        self.numbers = []
-        self.operators = []
+        self._numbers_ = []
+        self._operators_ = []
         self.generate_problem()
-        self.result = self.solve_it()
+        self._result_ = self.solve_it()
        
     def generate_problem(self):
         modifier = 10**self.decimal
         if self.decimal == 0:
             for i in range(self.numcount):
-                self.numbers.append(randint(self.interval[0],
+                self._numbers_.append(randint(self.interval[0],
                          self.interval[1]))
         else: 
             for i in range(self.numcount):
-                 self.numbers.append(randint(self.interval[0]*modifier,
+                 self._numbers_.append(randint(self.interval[0]*modifier,
                          self.interval[1]*modifier)/modifier)
         for j in range(self.numcount-1):
-            self.operators.append(choice(self.operator))
+            self._operators_.append(choice(self.operator))
 
     def __str__(self) -> str:
         problemstr = ""
-        for i in range(len(self.operators)):
+        for i in range(len(self._operators_)):
             problemstr = problemstr + \
-                (str(self.numbers[i]) if self.numbers[i] >= 0
-                else "("+str(self.numbers[i])+")")+self.operators[i]
+                (str(self._numbers_[i]) if self._numbers_[i] >= 0
+                else "("+str(self._numbers_[i])+")")+self._operators_[i]
         problemstr = problemstr+\
-            (str(self.numbers[-1]) if self.numbers[-1] >= 0
-            else "("+str(self.numbers[-1])+")")+ " = "
+            (str(self._numbers_[-1]) if self._numbers_[-1] >= 0
+            else "("+str(self._numbers_[-1])+")")+ " = "
         return problemstr
     
     def __len__(self):
@@ -60,27 +60,23 @@ class Example():
     
     def solve_it(self):
         div = False
-        help_result = self.numbers[0]
-        for i in range(len(self.numbers)-1):
-            if self.operators[i] == " + ":
-                help_result += self.numbers[i+1]
-            elif self.operators[i] == " - ":
-                help_result -= self.numbers[i+1]
-            elif self.operators[i] == " * ":
-                help_result *= self.numbers[i+1]
-            elif self.operators[i] == " / ":
-                help_result /= self.numbers[i+1]
+        help_result = self._numbers_[0]
+        for i in range(len(self._numbers_)-1):
+            if self._operators_[i] == " + ":
+                help_result += self._numbers_[i+1]
+            elif self._operators_[i] == " - ":
+                help_result -= self._numbers_[i+1]
+            elif self._operators_[i] == " * ":
+                help_result *= self._numbers_[i+1]
+            elif self._operators_[i] == " / ":
+                help_result /= self._numbers_[i+1]
                 div = True
         return help_result if div else round(help_result,self.decimal)
     
     def whole_example(self):
         return self.__str__() + str(self.solve_it())
 
-
-
-
-        
-#p = Example(5,[" / ", " * "," + "],interval=[-50,50],decimal=0)
+#p = Example(5,[" / ", " * "," + "],interval=[-50,50],decimal=0,divint=True)
 #d = Example(2, [" + "])
 #print(p)
 #print(p.solve_it())
